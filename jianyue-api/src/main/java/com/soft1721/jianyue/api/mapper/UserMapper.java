@@ -1,10 +1,7 @@
 package com.soft1721.jianyue.api.mapper;
 
 import com.soft1721.jianyue.api.entity.User;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -32,5 +29,12 @@ public interface UserMapper {
 
     @Update("UPDATE t_user SET nickname=#{nickname} WHERE id =#{id}")
     void updateUser1(User user);
+
+    @Update("UPDATE t_user SET password=#{password} WHERE id =#{id}")
+    void updateUser2(User user);
+
+    @Insert("INSERT INTO t_user(mobile,password,nickname,avatar,regtime,status)" +
+            " VALUES(#{mobile}, #{password}, #{nickname},#{avatar},#{regtime},#{status}) ")
+    void insert(User user);
 
 }

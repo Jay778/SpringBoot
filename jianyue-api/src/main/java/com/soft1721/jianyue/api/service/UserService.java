@@ -36,4 +36,12 @@ public interface UserService {
     */
     void updateUser1(User user);
 
+    void updateUser2(User user);
+    /**
+     * 用户注册方法
+     * @param userDTO
+     * @return int
+     */
+    void signUp(UserDTO userDTO);
+
 }

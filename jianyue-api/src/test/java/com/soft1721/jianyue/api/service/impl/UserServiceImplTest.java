@@ -54,4 +54,18 @@ public class UserServiceImplTest {
         user.setNickname("Jay3");
         userService.updateUser1(user);
     }
+
+    @Test
+    public void updateUser2(){
+        User user=userService.getUserById(1);
+        user.setPassword("222");
+        userService.updateUser2(user);
+    }
+    @Test
+    public void signUp() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setMobile("18851999259");
+        userDTO.setPassword("111");
+        userService.signUp(userDTO);
+    }
 }
