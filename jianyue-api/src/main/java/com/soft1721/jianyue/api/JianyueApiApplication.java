@@ -12,4 +12,5 @@ public class JianyueApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JianyueApiApplication.class, args);
 	}
+
 }

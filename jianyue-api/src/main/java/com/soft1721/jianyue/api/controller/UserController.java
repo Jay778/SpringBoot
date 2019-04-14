@@ -98,7 +98,6 @@ public class UserController {
         User user = userService.getUserById(id);
         return ResponseResult.success(user);
     }
-
     @PostMapping(value = "/verify")
     public ResponseResult getVerifyCode(@RequestParam("mobile") String mobile) {
         User user = userService.getUserByMobile(mobile);

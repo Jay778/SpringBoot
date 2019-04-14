@@ -21,7 +21,7 @@ import java.util.UUID;
 public class UploadController {
  @PostMapping("/avatar/upload")
     public String ossUpload(@RequestParam("file") MultipartFile sourceFile) {
-        String endpoint = "http://oss-cn-hangzhou.aliyuncs.com";
+        String endpoint = "http://oss-cn-shanghai.aliyuncs.com";
         String accessKeyId = "LTAIZsuAeD3qGFzf";
         String accessKeySecret = "RiwVnBS3AHXCKuQKV53CGM9GFC7B1u";
         String bucketName = "niit-jay";
