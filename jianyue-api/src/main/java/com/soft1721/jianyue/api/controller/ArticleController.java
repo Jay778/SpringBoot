@@ -47,7 +47,7 @@ public class ArticleController {
     public ResponseResult getArticleById(@PathVariable("aId") int aId
             ,@RequestParam("userId") int userId) {
         ArticleVO article = articleService.getArticleById(aId);
-        int toUId = article.getUId();
+        int toUId = article.getuId();
         Map<String, Object> map = new HashMap<>();
         Follow follow = followService.getFollow(userId, toUId);
         if (follow != null) {
@@ -74,7 +74,7 @@ public class ArticleController {
                                       @RequestParam("title") String title,
                                       @RequestParam("content") String content) {
         Article article = new Article();
-        article.setUId(uId);
+        article.setuId(uId);
         article.setTitle(title);
         article.setContent(content);
         article.setCreateTime(new Date());

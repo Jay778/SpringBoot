@@ -20,8 +20,8 @@ public class CommentController {
     @PostMapping("/add")
     public ResponseResult addComment(@RequestParam("aId") int aId, @RequestParam("uId") int uId, @RequestParam("content") String content) {
         Comment comment = new Comment();
-        comment.setAId(aId);
-        comment.setUId(uId);
+        comment.setaId(aId);
+        comment.setuId(uId);
         comment.setContent(content);
         comment.setCommentTime(new Date());
         commentService.addComment(comment);
