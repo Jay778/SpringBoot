@@ -10,4 +10,6 @@ public class MsgConst {
     public static final String VERIFYCODE_ERROR = "验证码错误";
     public static final String FOLLOWED="已关注";
     public static final String NO_FOLLOWED="未关注";
+    public static final String COLLECT="已收藏";
+    public static final String NO_COLLECT="未收藏";
 }

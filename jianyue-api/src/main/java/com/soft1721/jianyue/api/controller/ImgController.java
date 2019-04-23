@@ -29,7 +29,7 @@ public class ImgController {
                 //遍历图片List，创建Img对象写入数据库
                 for (String imgUrl:imgList) {
                     Img img = new Img();
-                    img.setaId(aId);
+                    img.setAId(aId);
                     img.setImgUrl(imgUrl);
             imgService.insertImg(img);
         }

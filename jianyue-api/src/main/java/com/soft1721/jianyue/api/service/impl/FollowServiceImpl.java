@@ -20,6 +20,7 @@ public class FollowServiceImpl implements FollowService {
 
     @Override
     public Follow getFollow(int fromUId, int toUId) {
+
         return followMapper.getFollow(fromUId,toUId);
     }
 
@@ -31,9 +32,7 @@ public class FollowServiceImpl implements FollowService {
     @Override
     public void insertFollow(Follow follow) {
         followMapper.insertFollow(follow);
-
     }
-
     @Override
     public void deleteFollow(int fromUId, int toUId) {
         followMapper.deleteFollow(fromUId,toUId);

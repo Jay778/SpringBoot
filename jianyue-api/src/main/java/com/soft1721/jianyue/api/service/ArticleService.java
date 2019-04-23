@@ -16,5 +16,6 @@ public interface ArticleService {
     ArticleVO getArticleById(int aId);
     void insertArticle(Article article);
     List<ArticleVO> getArticleByUId(int uId);
+    void deletArticleById(int id);
 
 }

@@ -1,18 +1,13 @@
 package com.soft1721.jianyue.api.controller;
 
 import com.aliyun.oss.OSSClient;
-import com.soft1721.jianyue.api.entity.Article;
-import com.soft1721.jianyue.api.entity.Follow;
-import com.soft1721.jianyue.api.entity.Img;
-import com.soft1721.jianyue.api.entity.User;
+import com.soft1721.jianyue.api.entity.*;
 import com.soft1721.jianyue.api.entity.vo.ArticleVO;
 import com.soft1721.jianyue.api.entity.vo.CommentVO;
-import com.soft1721.jianyue.api.service.ArticleService;
-import com.soft1721.jianyue.api.service.CommentService;
-import com.soft1721.jianyue.api.service.FollowService;
-import com.soft1721.jianyue.api.service.ImgService;
+import com.soft1721.jianyue.api.service.*;
 import com.soft1721.jianyue.api.util.MsgConst;
 import com.soft1721.jianyue.api.util.ResponseResult;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,6 +32,9 @@ public class ArticleController {
     @Resource
     private FollowService followService;
 
+    @Resource
+    private CollectService collectService;
+
     @GetMapping(value = "/list")
     public ResponseResult getAll() {
         List<ArticleVO> articleList = articleService.selectAll();
@@ -47,18 +45,29 @@ public class ArticleController {
     public ResponseResult getArticleById(@PathVariable("aId") int aId
             ,@RequestParam("userId") int userId) {
         ArticleVO article = articleService.getArticleById(aId);
-        int toUId = article.getuId();
+        int toUId = article.getUId();
+        int toId=article.getId();
         Map<String, Object> map = new HashMap<>();
         Follow follow = followService.getFollow(userId, toUId);
+        Collect collect=collectService.getCollect(userId,toId);
         if (follow != null) {
             map.put("followed", MsgConst.FOLLOWED);
         } else {
             map.put("followed", MsgConst.NO_FOLLOWED);
         }
+        if(collect != null){
+            map.put("collected",MsgConst.COLLECT);
+        } else {
+            map.put("collected",MsgConst.NO_COLLECT);
+        }
         List<CommentVO> comments = commentService.selectCommentsByAId(aId);
         map.put("article", article);
         map.put("comments", comments);
         return ResponseResult.success(map);
+    }
+    @DeleteMapping(value="/user")
+    public  void deletArticleById(@RequestParam("id") int id){
+     articleService.deletArticleById(id);
     }
 
     @GetMapping(value = "/user")
@@ -66,15 +75,12 @@ public class ArticleController {
         List<ArticleVO> articleList = articleService.getArticleByUId(userId);
         return ResponseResult.success(articleList);
     }
-
-
-
     @PostMapping("/add")
     public ResponseResult postArticle(@RequestParam("uId") int uId,
                                       @RequestParam("title") String title,
                                       @RequestParam("content") String content) {
         Article article = new Article();
-        article.setuId(uId);
+        article.setUId(uId);
         article.setTitle(title);
         article.setContent(content);
         article.setCreateTime(new Date());

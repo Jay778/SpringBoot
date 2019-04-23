@@ -32,6 +32,10 @@ public class ArticleServiceImpl implements ArticleService {
     public ArticleVO getArticleById(int aId) {
         return articleMapper.getArticleById(aId);
     }
+   @Override
+   public  void deletArticleById(int id){
+        articleMapper.deletArticleById(id);
+   }
 
     @Override
     public void insertArticle(Article article){

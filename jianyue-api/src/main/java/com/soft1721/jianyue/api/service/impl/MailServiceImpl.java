@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 public class MailServiceImpl implements MailService {
     @Autowired
     private JavaMailSender mailSender;
-
     @Override
     public void sendMail(String to, String subject, String content) {
         SimpleMailMessage mailMessage=new SimpleMailMessage();
